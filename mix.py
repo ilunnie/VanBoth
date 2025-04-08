@@ -24,3 +24,7 @@ def complete_percents(*colors: Union[ink, Tuple[ink, float]]):
 
 def mix(*colors: Union[ink, Tuple[ink, float]]):
     colors = complete_percents(*colors)
+    cmyk = [((c * p), (m * p), (y * p), (k * p))
+            for (c, m, y, k), p
+            in colors]
+    return tuple(map(sum, zip(*cmyk)))
